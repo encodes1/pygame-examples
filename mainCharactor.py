@@ -1,6 +1,7 @@
 from images import get_image
 import pygame
 from bullet import bullet
+import time
 
 class mainCharactor:
     x = 300
@@ -12,6 +13,8 @@ class mainCharactor:
     movekeys = [MOVE_UP, MOVE_DOWN,MOVE_LEFT,MOVE_RIGHT] 
     actionkeys = []
     bullets= []
+    lastshot = 0
+    timeBetweenShots = 0.2
     
     def __init__(self):
 
@@ -43,8 +46,12 @@ class mainCharactor:
         #     return      
 
     def shoot(self,key):
-        b = bullet(self.x+55, self.y-10,10)
-        self.bullets.append(b)
+        print "time" +  str(time.clock())
+        print "last" + str(self.lastshot)
+        if (time.clock()) > self.lastshot:
+            b = bullet(self.x+55, self.y-10,10)
+            self.lastshot = time.clock()+self.timeBetweenShots
+            self.bullets.append(b)
         
     def getBullets(self):
         return self.bullets

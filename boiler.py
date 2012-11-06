@@ -2,6 +2,7 @@ import pygame
 import images
 from mainCharactor import mainCharactor
 from lv1enemy import lv1enemy
+from images import get_image
 
 class SceneBase:
     def __init__(self):
@@ -96,7 +97,7 @@ class Level1(SceneBase):
         #         self.charactor.processAction(event.key)
         for i in self.enemies:
             i.processAction()
-            for x in self.chacarot.getBullets():
+            for x in self.charactor.getBullets():
                 i.hit(x.x, x.y)
 
         
@@ -105,7 +106,9 @@ class Level1(SceneBase):
     
     def Render(self, screen):
         ## render our charactor
-        screen.fill((40, 100, 255))
+        
+        screen.blit(get_image('images/background.png'), (0,0))
+        # screen.fill((40, 100, 255))
         self.charactor.render(screen)
         for i in self.enemies:
             i.render(screen)

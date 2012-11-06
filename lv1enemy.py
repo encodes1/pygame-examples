@@ -29,9 +29,10 @@ class lv1enemy:
 
 
     def hit(self, x,y):
-        if self.x > x-10 and self.x < x +10:
-             if self.y > y-10 and self.y < y +10:
-                self.kill()
+        if self.x > (x-10) and self.x < (x+10):
+            # if self.y > (y-10) and self.y  < (y+10):
+                # print("here2")
+            self.kill()
 
     def render(self,screen):
         if self.killed == False :
