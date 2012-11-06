@@ -1,14 +1,6 @@
 from images import get_image
 import pygame
-
-class bullet:
-    def __init__(self,x,y,speed):
-        self.x = x
-        self.y = y
-        self.speed = speed
-
-    def move(self):
-        self.x = self.x + self.speed
+from bullet import bullet
 
 class mainCharactor:
     x = 300
@@ -19,7 +11,7 @@ class mainCharactor:
     MOVE_RIGHT =pygame.K_RIGHT
     movekeys = [MOVE_UP, MOVE_DOWN,MOVE_LEFT,MOVE_RIGHT] 
     actionkeys = []
-    bullets= {}
+    bullets= []
     
     def __init__(self):
 
@@ -51,9 +43,11 @@ class mainCharactor:
         #     return      
 
     def shoot(self,key):
-        bullet = bullet(self.x, self.y,10)
-        self.bullets.append(bullet)
+        b = bullet(self.x+55, self.y-10,10)
+        self.bullets.append(b)
         
+    def getBullets(self):
+        return self.bullets
 
     def processMove(self, key):
         if key[self.MOVE_UP]  : self.y -= 3
@@ -66,7 +60,7 @@ class mainCharactor:
     def render(self,screen):
         for bullet in self.bullets:
             bullet.move()
-            screen.blit(get_image('images/ship.png'), (bullet.x, bullet.y))
+            screen.blit(get_image('images/bullet.png'), (bullet.x, bullet.y))
 
         screen.blit(get_image('images/ship.png'), (self.x, self.y))
 

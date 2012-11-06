@@ -96,6 +96,9 @@ class Level1(SceneBase):
         #         self.charactor.processAction(event.key)
         for i in self.enemies:
             i.processAction()
+            for x in self.chacarot.getBullets():
+                i.hit(x.x, x.y)
+
         
     def Update(self):
         pass

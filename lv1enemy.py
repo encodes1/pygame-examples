@@ -8,13 +8,13 @@ class lv1enemy:
     killed = False
     bullets = {}
     def __init__(self):
-
+        self.image = get_image('images/enemy1.png')
         pass
 
     def processAction(self):
         if self.killed == False:
             x = +1
-            y = random.randrange(-3, +10) 
+            y = random.randrange(0, 5) 
             self.x = self.x+x
             self.y = self.y+y
             if(self.y) >600:
@@ -28,7 +28,12 @@ class lv1enemy:
         pass
 
 
+    def hit(self, x,y):
+        if self.x > x-10 and self.x < x +10:
+             if self.y > y-10 and self.y < y +10:
+                self.kill()
+
     def render(self,screen):
         if self.killed == False :
-            screen.blit(get_image('images/enemy1.png'), (self.x, self.y))
+            screen.blit(self.image, (self.x, self.y))
 
