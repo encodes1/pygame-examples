@@ -6,7 +6,7 @@ class lv1enemy:
     x = 300
     y = 000
     killed = False
-    
+    bullets = {}
     def __init__(self):
 
         pass
